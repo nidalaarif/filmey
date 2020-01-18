@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Movie;
+use App\Link;
 use Illuminate\Http\Request;
 
 class MoviesController extends Controller
@@ -48,6 +49,7 @@ class MoviesController extends Controller
     public function show(Movie $movie)
     {
         $details =  Movie::find($movie);
+
         return view('movieDetails')->with('details',$details);
     }
 
