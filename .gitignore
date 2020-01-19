@@ -17,6 +17,7 @@ resources/views/.DS_Store
 public/download_files/
 public/screenshots/
 .DS_Store
+.idea/
 
 
 
