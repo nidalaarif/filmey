@@ -10,7 +10,7 @@ class Link extends Model
         'link','quality_type','movie'
         ];
 
-    public function movie(){
+    public function movie(){ 
         return $this->belongsTo(Movie::class);
     }
 }

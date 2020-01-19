@@ -48,9 +48,14 @@ class MoviesController extends Controller
      */
     public function show(Movie $movie)
     {
+        $data = [];
         $details =  Movie::find($movie);
-
-        return view('movieDetails')->with('details',$details);
+        $links = $details[0]->links()->where('quality_type','!=','screenshot')->get();
+        $screenshots = $details[0]->links()->where('quality_type','screenshot')->get();
+        $data['details'] = $details;
+        $data['links'] = $links;
+        $data['screenshots'] = $screenshots;
+        return view('movieDetails',compact('data',$data));
     }
 
     /**
