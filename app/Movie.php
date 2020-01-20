@@ -11,4 +11,8 @@ class Movie extends Model
         ];
 
 
+    public function crew(){
+        return $this->hasMany(Crew::class);
+    }
+
 }

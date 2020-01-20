@@ -58,6 +58,7 @@
                                 <div class="tab-content">
                                     <div id="overview" class="tab active">
                                         <div class="row">
+<<<<<<< Updated upstream
                                             ƒ<div class="col-md-8 col-sm-12 col-xs-12">
                                                 <p>{{ $details[0]->synopsis }}</p>
                                                 <div class="title-hd-sm">
@@ -140,6 +141,23 @@
                                                     <h4>User reviews</h4>
                                                     <a href="#" class="time">See All 56 Reviews <i class="ion-ios-arrow-right"></i></a>
                                                 </div>
+=======
+                                            <div class="col-md-8 col-sm-12 col-xs-12">
+                                                <p>{{ $data['details'][0]->synopsis }}</p>
+                                                <!-- download links -->
+                                                <h3 class="">Available in :</h3>
+                                                @if($data['links'])
+                                                    <div class="download-links row">
+                                                        @foreach($data['links'] as $link)
+                                                            <div class="col-md-3 col-sm-12 col-xs-12">
+                                                                <a class="one-link" href="{{ asset('/'.$link->link) }}">{{ $link->quality_type }}</a>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                @else
+                                                    <p>Sorry! there is no download links</p>
+                                                @endif
+>>>>>>> Stashed changes
                                                 <!-- movie user review -->
                                                 <div class="mv-user-review-item">
                                                     <h3>Best Marvel movie in my opinion</h3>
@@ -164,31 +182,28 @@
                                             <div class="col-md-4 col-xs-12 col-sm-12">
                                                 <div class="sb-it">
                                                     <h6>Director: </h6>
-                                                    <p><a href="#">Joss Whedon</a></p>
-                                                </div>
-                                                <div class="sb-it">
-                                                    <h6>Writer: </h6>
-                                                    <p><a href="#">Joss Whedon,</a> <a href="#">Stan Lee</a></p>
+                                                    <p><a href="#">{{ $data['directors'][0]->name }}</a></p>
                                                 </div>
                                                 <div class="sb-it">
                                                     <h6>Stars: </h6>
-                                                    <p><a href="#">Robert Downey Jr,</a> <a href="#">Chris Evans,</a> <a href="#">Mark Ruffalo,</a><a href="#"> Scarlett Johansson</a></p>
+                                                    <p>
+                                                        @foreach($data['actors'] as $actor)
+
+                                                            <a href="#">{{ $actor->name }}</a> ,
+                                                        @endforeach
+                                                    </p>
                                                 </div>
                                                 <div class="sb-it">
                                                     <h6>Genres:</h6>
-                                                    <p><a href="#">Action, </a> <a href="#"> Sci-Fi,</a> <a href="#">Adventure</a></p>
+                                                    <p>{{ $data['details'][0]->category }}</p>
                                                 </div>
                                                 <div class="sb-it">
                                                     <h6>Release Date:</h6>
-                                                    <p>May 1, 2015 (U.S.A)</p>
+                                                    <p>{{ $data['details'][0]->year }}</p>
                                                 </div>
                                                 <div class="sb-it">
-                                                    <h6>Run Time:</h6>
-                                                    <p>141 min</p>
-                                                </div>
-                                                <div class="sb-it">
-                                                    <h6>MMPA Rating:</h6>
-                                                    <p>PG-13</p>
+                                                    <h6>IMDB Rating:</h6>
+                                                    <p>{{ $data['details'][0]->ratings }}</p>
                                                 </div>
                                                 <div class="sb-it">
                                                     <h6>Plot Keywords:</h6>
@@ -388,7 +403,7 @@
                                     <div id="cast" class="tab">
                                         <div class="row">
                                             <h3>Cast & Crew of</h3>
-                                            <h2>Avengers: Age of Ultron</h2>
+                                            <h2>{{ $data['details'][0]->title }}</h2>
                                             <!-- //== -->
                                             <div class="title-hd-sm">
                                                 <h4>Directors & Credit Writers</h4>
@@ -396,184 +411,32 @@
                                             <div class="mvcast-item">
                                                 <div class="cast-it">
                                                     <div class="cast-left">
-                                                        <h4>JW</h4>
-                                                        <a href="#">Joss Whedon</a>
+                                                        <img src="{{ asset('/'.$data['directors'][0]->avatar) }}" />
+                                                        <a href="#">{{ $data['directors'][0]->name }}</a>
                                                     </div>
                                                     <p>...  Director</p>
                                                 </div>
                                             </div>
                                             <!-- //== -->
                                             <div class="title-hd-sm">
-                                                <h4>Directors & Credit Writers</h4>
-                                            </div>
-                                            <div class="mvcast-item">
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>SL</h4>
-                                                        <a href="#">Stan Lee</a>
-                                                    </div>
-                                                    <p>...  (based on Marvel comics)</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>JK</h4>
-                                                        <a href="#">Jack Kirby</a>
-                                                    </div>
-                                                    <p>...  (based on Marvel comics)</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>JS</h4>
-                                                        <a href="#">Joe Simon</a>
-                                                    </div>
-                                                    <p>...  (character created by: Captain America)</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>JS</h4>
-                                                        <a href="#">Joe Simon</a>
-                                                    </div>
-                                                    <p>...  (character created by: Thanos)</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>RT</h4>
-                                                        <a href="#">Roy Thomas</a>
-                                                    </div>
-                                                    <p>...  (character created by: Ultron, Vision)</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>JB</h4>
-                                                        <a href="#">John Buscema</a>
-                                                    </div>
-                                                    <p>...  (character created by: Ultron, Vision)</p>
-                                                </div>
-                                            </div>
-                                            <!-- //== -->
-                                            <div class="title-hd-sm">
                                                 <h4>Cast</h4>
                                             </div>
-                                            <div class="mvcast-item">
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <img src="{{ asset('/'.'images/uploads/cast1.jpg') }}" alt="">
-                                                        <a href="#">Robert Downey Jr.</a>
+                                            @if($data['actors'])
+                                                @foreach($data['actors'] as $actor)
+                                                    <div class="mvcast-item">
+                                                        <div class="cast-it">
+                                                            <div class="cast-left">
+                                                                <img src="{{ asset('/'.$actor->avatar) }}" alt="">
+                                                                <a href="#">{{ $actor->name }}</a>
+                                                            </div>
+                                                            <p>{{ $actor->actor_role }}</p>
+                                                        </div>
                                                     </div>
-                                                    <p>...  Robert Downey Jr.</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <img src="{{ asset('/'.'images/uploads/cast1.jpg') }}" alt="">
-                                                        <a href="#">Chris Hemsworth</a>
-                                                    </div>
-                                                    <p>...  Thor</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <img src="{{ asset('/'.'images/uploads/cast1.jpg') }}" alt="">
-                                                        <a href="#">Mark Ruffalo</a>
-                                                    </div>
-                                                    <p>...  Bruce Banner/ Hulk</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <img src="{{ asset('/'.'images/uploads/cast1.jpg') }}" alt="">
-                                                        <a href="#">Chris Evans</a>
-                                                    </div>
-                                                    <p>...  Steve Rogers/ Captain America</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <img src="{{ asset('/'.'images/uploads/cast1.jpg') }}" alt="">
-                                                        <a href="#">Scarlett Johansson</a>
-                                                    </div>
-                                                    <p>...  Natasha Romanoff/ Black Widow</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <img src="{{ asset('/'.'images/uploads/cast1.jpg') }}" alt="">
-                                                        <a href="#">Jeremy Renner</a>
-                                                    </div>
-                                                    <p>...  Clint Barton/ Hawkeye</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <img src="{{ asset('/'.'images/uploads/cast1.jpg') }}" alt="">
-                                                        <a href="#">James Spader</a>
-                                                    </div>
-                                                    <p>...  Ultron</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <img src="{{ asset('/'.'images/uploads/cast1.jpg') }}" alt="">
-                                                        <a href="#">Don Cheadle</a>
-                                                    </div>
-                                                    <p>...  James Rhodes/ War Machine</p>
-                                                </div>
-                                            </div>
+                                                @endforeach
+                                            @else
+                                                <p>Sorry no data found !</p>
+                                            @endif
                                             <!-- //== -->
-                                            <div class="title-hd-sm">
-                                                <h4>Produced by</h4>
-                                            </div>
-                                            <div class="mvcast-item">
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>VA</h4>
-                                                        <a href="#">Victoria Alonso</a>
-                                                    </div>
-                                                    <p>...  executive producer</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>MB</h4>
-                                                        <a href="#">Mitchel Bell</a>
-                                                    </div>
-                                                    <p>...  co-producer (as Mitch Bell)</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>JC</h4>
-                                                        <a href="#">Jamie Christopher</a>
-                                                    </div>
-                                                    <p>...  associate producer</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>LD</h4>
-                                                        <a href="#">Louis D’Esposito</a>
-                                                    </div>
-                                                    <p>...  executive producer</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>JF</h4>
-                                                        <a href="#">Jon Favreau</a>
-                                                    </div>
-                                                    <p>...  executive producer</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>KF</h4>
-                                                        <a href="#">Kevin Feige</a>
-                                                    </div>
-                                                    <p>...  producer</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>AF</h4>
-                                                        <a href="#">Alan Fine</a>
-                                                    </div>
-                                                    <p>...  executive producer</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>JF</h4>
-                                                        <a href="#">Jeffrey Ford</a>
-                                                    </div>
-                                                    <p>...  associate producer</p>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div id="media" class="tab">
