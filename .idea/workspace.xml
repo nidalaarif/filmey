@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="a21f5504-0819-411c-8db6-0a233015b203" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
+=======
+<<<<<<< Updated upstream
+    <list default="true" id="a21f5504-0819-411c-8db6-0a233015b203" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="a21f5504-0819-411c-8db6-0a233015b203" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Crew.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Crew.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Movie.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Movie.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/movieDetails.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/movieDetails.blade.php" afterDir="false" />
+    </list>
+>>>>>>> Stashed changes
+>>>>>>> movies
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,9 +173,20 @@
       <workItem from="1579000622426" duration="5266000" />
       <workItem from="1579092040456" duration="1555000" />
       <workItem from="1579183181169" duration="10746000" />
+<<<<<<< HEAD
       <workItem from="1579271866334" duration="5561000" />
       <workItem from="1579356321475" duration="3992000" />
       <workItem from="1579448710549" duration="6833000" />
+=======
+<<<<<<< Updated upstream
+      <workItem from="1579271866334" duration="5304000" />
+=======
+      <workItem from="1579271866334" duration="5561000" />
+      <workItem from="1579356321475" duration="3992000" />
+      <workItem from="1579448710549" duration="6833000" />
+      <workItem from="1579517143806" duration="3646000" />
+>>>>>>> Stashed changes
+>>>>>>> movies
     </task>
     <servers />
   </component>
@@ -179,5 +205,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/movieDetails.blade.php</url>
+          <line>57</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

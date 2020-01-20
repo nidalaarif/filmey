@@ -14,4 +14,8 @@ class Movie extends Model
         return $this->hasMany(Link::class);
     }
 
+    public function crew(){
+        return $this->hasMany(Crew::class);
+    }
+
 }
