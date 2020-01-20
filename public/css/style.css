@@ -8287,3 +8287,13 @@ footer.full-width-ft .ft-copyright {
 .rate-star.movie_category {
     color: white;
 }
+.download-links {
+    padding-bottom: 20px;
+}
+a.one-link {
+    color: #E30040;
+    border-color: #E30040;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 1px;
+}

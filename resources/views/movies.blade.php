@@ -1,5 +1,21 @@
 @extends('layouts.app')
 @section('content')
+
+    <div class="hero common-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hero-ct">
+                        <h1>Movie Listing - Grid Fullwidth</h1>
+                        <ul class="breadcumb">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li> <span class="ion-ios-arrow-right"></span> movie listing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <div class="page-single">
     <div class="container">
         <div class="row">
