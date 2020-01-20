@@ -48,9 +48,7 @@ class MoviesController extends Controller
     public function show(Movie $movie)
     {
         $details =  Movie::find($movie);
-<<<<<<< Updated upstream
         return view('movieDetails')->with('details',$details);
-=======
         $links = $details[0]->links()->where('quality_type','!=','screenshot')->get();
         $screenshots = $details[0]->links()->where('quality_type','screenshot')->get();
         $directors = $details[0]->crew()->where('profession','director')->get();
@@ -61,7 +59,6 @@ class MoviesController extends Controller
         $data['directors'] = $directors;
         $data['actors'] = $actors;
         return view('movieDetails',compact('data',$data));
->>>>>>> Stashed changes
     }
 
     /**

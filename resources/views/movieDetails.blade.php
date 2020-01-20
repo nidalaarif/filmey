@@ -58,8 +58,7 @@
                                 <div class="tab-content">
                                     <div id="overview" class="tab active">
                                         <div class="row">
-<<<<<<< Updated upstream
-                                            ƒ<div class="col-md-8 col-sm-12 col-xs-12">
+                                            <div class="col-md-8 col-sm-12 col-xs-12">
                                                 <p>{{ $details[0]->synopsis }}</p>
                                                 <div class="title-hd-sm">
                                                     <h4>Videos & Photos</h4>
@@ -141,7 +140,6 @@
                                                     <h4>User reviews</h4>
                                                     <a href="#" class="time">See All 56 Reviews <i class="ion-ios-arrow-right"></i></a>
                                                 </div>
-=======
                                             <div class="col-md-8 col-sm-12 col-xs-12">
                                                 <p>{{ $data['details'][0]->synopsis }}</p>
                                                 <!-- download links -->
@@ -157,7 +155,6 @@
                                                 @else
                                                     <p>Sorry! there is no download links</p>
                                                 @endif
->>>>>>> Stashed changes
                                                 <!-- movie user review -->
                                                 <div class="mv-user-review-item">
                                                     <h3>Best Marvel movie in my opinion</h3>
