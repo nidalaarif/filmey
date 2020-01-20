@@ -58,11 +58,8 @@
                                 <div class="tab-content">
                                     <div id="overview" class="tab active">
                                         <div class="row">
-<<<<<<< Updated upstream
-                                            ƒ<div class="col-md-8 col-sm-12 col-xs-12">
-<<<<<<< HEAD
-=======
-                                                <p>{{ $details[0]->synopsis }}</p>
+                                            <div class="col-md-8 col-sm-12 col-xs-12">
+                                                <p>{{ $data['details'][0]->synopsis }}</p>
                                                 <div class="title-hd-sm">
                                                     <h4>Videos & Photos</h4>
                                                     <a href="#" class="time">All 5 Videos & 245 Photos <i class="ion-ios-arrow-right"></i></a>
@@ -143,9 +140,7 @@
                                                     <h4>User reviews</h4>
                                                     <a href="#" class="time">See All 56 Reviews <i class="ion-ios-arrow-right"></i></a>
                                                 </div>
-=======
                                             <div class="col-md-8 col-sm-12 col-xs-12">
->>>>>>> movies
                                                 <p>{{ $data['details'][0]->synopsis }}</p>
                                                 <!-- download links -->
                                                 <h3 class="">Available in :</h3>
@@ -160,10 +155,7 @@
                                                 @else
                                                     <p>Sorry! there is no download links</p>
                                                 @endif
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> movies
+
                                                 <!-- movie user review -->
                                                 <div class="mv-user-review-item">
                                                     <h3>Best Marvel movie in my opinion</h3>
@@ -412,7 +404,7 @@
                                             <h2>{{ $data['details'][0]->title }}</h2>
                                             <!-- //== -->
                                             <div class="title-hd-sm">
-                                                <h4>Directors & Credit Writers</h4>
+                                                <h4>Directors   & Credit Writers</h4>
                                             </div>
                                             <div class="mvcast-item">
                                                 <div class="cast-it">

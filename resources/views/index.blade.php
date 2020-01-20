@@ -15,13 +15,15 @@
                         @foreach($movies as $movie)
                             <div class="movie-item">
                                 <div class="mv-img">
-                                    <a href="#"><img src="{{ asset('/'.$movie->poster_image) }}" alt="" width="285" height="437"></a>
+                                    <a href="movies/{{$movie->id}}"><img src="{{ asset('/'.$movie->poster_image.'.jpg') }}" alt="" width="285" height="437"></a>
                                 </div>
                                 <div class="title-in">
                                     <div class="cate">
-                                        <span class="blue"><a href="#">{{$movie->category}}</a></span>
+                                        @foreach($movie->cats as $cat)
+                                            <span class="blue"><a href="#">{{ $cat }}</a></span>
+                                        @endforeach
                                     </div>
-                                    <h6><a href="#">{{$movie->title}}</a></h6>
+                                    <h6><a href="movies/{{$movie->id}}">{{$movie->title}}</a></h6>
                                     <p><i class="ion-android-star"></i><span>{{$movie->ratings}}</span></p>
                                 </div>
                             </div>
