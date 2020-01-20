@@ -59,11 +59,7 @@
                                     <div id="overview" class="tab active">
                                         <div class="row">
                                             <div class="col-md-8 col-sm-12 col-xs-12">
-<<<<<<< HEAD
-                                                <p>{{ $details[0]->synopsis }}</p>
-=======
                                                 <p>{{ $data['details'][0]->synopsis }}</p>
->>>>>>> master
                                                 <div class="title-hd-sm">
                                                     <h4>Videos & Photos</h4>
                                                     <a href="#" class="time">All 5 Videos & 245 Photos <i class="ion-ios-arrow-right"></i></a>
