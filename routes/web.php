@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.app');
-});
+Route::get('/', 'PagesController@home');
 
 //Route::get('/movies', 'MoviesController@index');
 Route::resource('movies', 'MoviesController');
