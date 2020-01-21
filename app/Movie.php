@@ -10,6 +10,8 @@ class Movie extends Model
         'title','title-trimed','year','category','ratings','synopsis','poster','trailer-link','other-id'
         ];
 
+
+
     public function links(){
         return $this->hasMany(Link::class);
     }
