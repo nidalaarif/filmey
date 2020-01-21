@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Movie;
 use App\Link;
 use Illuminate\Http\Request;
+use League\Flysystem\Config;
 
 class MoviesController extends Controller
 {
@@ -49,23 +50,22 @@ class MoviesController extends Controller
     public function show(Movie $movie)
     {
         $data = [];
-        $details =  Movie::find($movie);
-
-        $links = $details[0]->links()->where('quality_type','!=','screenshot')->get();
-        $screenshots = $details[0]->links()->where('quality_type','screenshot')->get();
-        $data['details'] = $details;
+        //$details =  Movie::find($movie);
+        $links = $movie->links()->where('quality_type','!=','screenshot')->get();
+        $screenshots = $movie->links()->where('quality_type','screenshot')->get();
         $data['links'] = $links;
         $data['screenshots'] = $screenshots;
 
-        $links = $details[0]->links()->where('quality_type','!=','screenshot')->get();
-        $screenshots = $details[0]->links()->where('quality_type','screenshot')->get();
-        $directors = $details[0]->crew()->where('profession','director')->get();
-        $actors = $details[0]->crew()->where('profession','!=','director')->get();
-        $data['details'] = $details;
+        $links = $movie->links()->where('quality_type','!=','screenshot')->get();
+        $screenshots = $movie->links()->where('quality_type','screenshot')->get();
+        $directors = $movie->crew()->where('profession','director')->get();
+        $actors = $movie->crew()->where('profession','!=','director')->get();
+        $data['details'] = $movie;
         $data['links'] = $links;
         $data['screenshots'] = $screenshots;
         $data['directors'] = $directors;
         $data['actors'] = $actors;
+        $data['colors'] = \config('constants.colors.Action');
         return view('movieDetails',compact('data',$data));
     }
 

@@ -6,11 +6,11 @@
         <div class="row ipad-width2">
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="movie-img sticky-sb">
-                    <img src="{{asset('/'.$data['details'][0]->poster_image.'.jpg')}}" alt="">
+                    <img src="{{asset('/'.$data['details']->poster_image.'.jpg')}}" alt="">
                     <div class="movie-btn">
                         <div class="btn-transform transform-vertical red">
                             <div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Watch Trailer</a></div>
-                            <div><a href="{{ $data['details'][0]->trailer_link }}" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
+                            <div><a href="{{ $data['details']->trailer_link }}" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
                         </div>
                         <div class="btn-transform transform-vertical">
                             <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i> Buy ticket</a></div>
@@ -21,7 +21,7 @@
             </div>
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="movie-single-ct main-content">
-                    <h1 class="bd-hd">{{ $data['details'][0]->title }} <span>{{ $data['details'][0]->year }}</span></h1>
+                    <h1 class="bd-hd">{{ $data['details']->title }} <span>{{ $data['details']->year }}</span></h1>
                     <div class="social-btn">
                         <a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
                         <div class="hover-bnt">
@@ -37,13 +37,13 @@
                     <div class="movie-rate">
                         <div class="rate">
                             <i class="ion-android-star"></i>
-                            <p><span>{{ $data['details'][0]->ratings }}</span><br>
+                            <p><span>{{ $data['details']->ratings }}</span><br>
                                 <span class="rv">56 Reviews</span>
                             </p>
                         </div>
                         <div class="rate-star movie_category">
                             <p>Category: </p>
-                            <span>{{ $data['details'][0]->category }}</span>
+                            <span>{{ $data['details']->category }}</span>
                         </div>
                     </div>
                     <div class="movie-tabs">
@@ -59,7 +59,7 @@
                                 <div id="overview" class="tab active">
                                     <div class="row">
                                         <div class="col-md-8 col-sm-12 col-xs-12">
-                                            <p>{{ $data['details'][0]->synopsis }}</p>
+                                            <p>{{ $data['details']->synopsis }}</p>
                                             <!-- download links -->
                                             <h3 class="">Available in :</h3>
                                             @if($data['links'])
@@ -117,15 +117,15 @@
                                             </div>
                                             <div class="sb-it">
                                                 <h6>Genres:</h6>
-                                                <p>{{ $data['details'][0]->category }}</p>
+                                                <p>{{ $data['details']->category }}</p>
                                             </div>
                                             <div class="sb-it">
                                                 <h6>Release Date:</h6>
-                                                <p>{{ $data['details'][0]->year }}</p>
+                                                <p>{{ $data['details']->year }}</p>
                                             </div>
                                             <div class="sb-it">
                                                 <h6>IMDB Rating:</h6>
-                                                <p>{{ $data['details'][0]->ratings }}</p>
+                                                <p>{{ $data['details']->ratings }}</p>
                                             </div>
                                             <div class="sb-it">
                                                 <h6>Plot Keywords:</h6>
@@ -325,7 +325,7 @@
                                 <div id="cast" class="tab">
                                     <div class="row">
                                         <h3>Cast & Crew of</h3>
-                                        <h2>{{ $data['details'][0]->title }}</h2>
+                                        <h2>{{ $data['details']->title }}</h2>
                                         <!-- //== -->
                                         <div class="title-hd-sm">
                                             <h4>Directors & Credit Writers</h4>
@@ -429,7 +429,7 @@
                                         <div class="rv-hd">
                                             <div>
                                                 <h3>Videos & Photos of</h3>
-                                                <h2>{{ $data['details'][0]->title }}</h2>
+                                                <h2>{{ $data['details']->title }}</h2>
                                             </div>
                                         </div>
                                         <div class="title-hd-sm">
