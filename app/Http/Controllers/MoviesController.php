@@ -88,6 +88,7 @@ class MoviesController extends Controller
 
         $related_movies = Movie::take(7)->orWhere('category','like','%'.$movie->category.'%')
                                         ->where('id','!=',$movie->id)
+                                        ->where('title','!=',$movie->title)
                                         ->orderBy('year','DESC')->get();
         $data['related'] = $related_movies;
 

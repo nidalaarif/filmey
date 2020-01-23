@@ -461,7 +461,7 @@
                                                     <div class="mv-item-infor">
                                                         <h6><a href="/movies/{{ $related->id }}">{{ $related->title }} <span>({{ $related->year }})</span></a></h6>
                                                         <p class="rate"><i class="ion-android-star"></i><span>{{ $related->ratings }}</span></p>
-                                                        <p class="describe">{{ substr($related->synopsis,0, 200) }} ...</p>
+                                                        <p class="describe">{{ substr($related->synopsis,0, 300) }} ...</p>
                                                         <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release date: {{ $related->year }}</span></p>
                                                         <p>Director: <a href="#">Joss Whedon</a></p>
                                                         <p>Stars: <a href="#">Robert Downey Jr.,</a> <a href="#">Chris Evans,</a> <a href="#">  Chris Hemsworth</a></p>
