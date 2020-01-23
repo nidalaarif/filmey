@@ -14,7 +14,7 @@ class Movie extends Model
 
     public $primaryKey = 'id';
 
-    public function links(){
+    public function movie_links(){
         return $this->hasMany(Link::class);
     }
 

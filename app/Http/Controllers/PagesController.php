@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Movie;
+use App\Crew;
 use Illuminate\Http\Request;
 use App\Category;
+use Illuminate\Support\Facades\DB;
+
 class PagesController extends Controller
 {
     public  function getCategories($movie_cat){
@@ -41,6 +44,15 @@ class PagesController extends Controller
             $item['genre'] = $this->getCategories($item->category);
         }
         // -------------- //
+        // For spotlight celebrities //
+
+        $spotlight_celeb = DB::table('crews')
+            ->take(8)
+            ->select('movie_id', DB::raw('id,name,avatar,profession,count(*) as total'))
+            ->groupBy('id','name','avatar','profession')
+            ->having('profession','=','actor')
+            ->orderBy('total','DESC')
+            ->get();
 
 
 
@@ -49,7 +61,7 @@ class PagesController extends Controller
 
 
         $hi = date('Y') - 1;
-        return view('index',compact('movies','topRated','latest','lastYear','hi'));
+        return view('index',compact('movies','topRated','latest','lastYear','spotlight_celeb','hi'));
     }
 }
 

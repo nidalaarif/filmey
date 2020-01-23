@@ -23,7 +23,7 @@
                                             <span class="blue" style="background-color: {{ $cat->category_color }};"><a href="#">{{ $cat->category_name }}</a></span>
                                         @endforeach
                                     </div>
-                                    <h6><a href="{{URL('/movies/'.$movie->id)}}">{{$movie->title}} </a> - {{$movie->id}}</h6>
+                                    <h6><a href="{{URL('/movies/'.$movie->id)}}">{{$movie->title}} </a></h6>
                                     <p><i class="ion-android-star"></i><span>{{$movie->ratings}}</span></p>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                                                             <img src="{{ asset('/'.$item->poster_image.'.jpg') }}" alt="" width="185" height="284">
                                                         </div>
                                                         <div class="hvr-inner">
-                                                            <a  href="movies/{{ $item->title }}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                                                            <a  href="movies/{{ $item->id }}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
                                                         </div>
                                                         <div class="title-in">
                                                             <h6><a href="#">{{ $item->title }}</a></h6>
@@ -650,45 +650,30 @@
                     <div class="sidebar">
                         <div class="celebrities">
                             <h4 class="sb-title">Spotlight Celebrities</h4>
-                            <div class="celeb-item">
-                                <a href="#"><img src="images/uploads/ava1.jpg" alt="" width="70" height="70"></a>
-                                <div class="celeb-author">
-                                    <h6><a href="#">Samuel N. Jack</a></h6>
-                                    <span>Actor</span>
-                                </div>
-                            </div>
-                            <div class="celeb-item">
-                                <a href="#"><img src="images/uploads/ava2.jpg" alt="" width="70" height="70"></a>
-                                <div class="celeb-author">
-                                    <h6><a href="#">Benjamin Carroll</a></h6>
-                                    <span>Actor</span>
-                                </div>
-                            </div>
-                            <div class="celeb-item">
-                                <a href="#"><img src="images/uploads/ava3.jpg" alt="" width="70" height="70"></a>
-                                <div class="celeb-author">
-                                    <h6><a href="#">Beverly Griffin</a></h6>
-                                    <span>Actor</span>
-                                </div>
-                            </div>
-                            <div class="celeb-item">
-                                <a href="#"><img src="images/uploads/ava4.jpg" alt="" width="70" height="70"></a>
-                                <div class="celeb-author">
-                                    <h6><a href="#">Justin Weaver</a></h6>
-                                    <span>Actor</span>
-                                </div>
-                            </div>
+                            @if(count($spotlight_celeb) > 0)
+                                @foreach($spotlight_celeb as $celeb)
+                                    <div class="celeb-item">
+                                        <a href="#"><img src="{{ asset('/'.$celeb->avatar) }}" alt="" width="70" height="70"></a>
+                                        <div class="celeb-author">
+                                            <h6><a href="#">{{ $celeb->name }}</a></h6>
+                                            <span>Actor</span>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <p>No celebrities</p>
+                            @endif
                             <a href="#" class="btn">See all celebrities<i class="ion-ios-arrow-right"></i></a>
                         </div>
-                        <div class="sb-twitter sb-it">
-                            <h4 class="sb-title">Tweet to us</h4>
-                            <div class="slick-tw">
-                                <div class="tweet item" id="599202861751410688">
-                                </div>
-                                <div class="tweet item" id="297462728598122498">
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="sb-twitter sb-it">--}}
+{{--                            <h4 class="sb-title">Tweet to us</h4>--}}
+{{--                            <div class="slick-tw">--}}
+{{--                                <div class="tweet item" id="599202861751410688">--}}
+{{--                                </div>--}}
+{{--                                <div class="tweet item" id="297462728598122498">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
             </div>

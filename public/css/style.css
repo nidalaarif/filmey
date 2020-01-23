@@ -8287,6 +8287,12 @@ footer.full-width-ft .ft-copyright {
 .rate-star.movie_category {
     color: white;
 }
+.movie_category span.blue {
+    margin-left: 2px;
+}
+.movie_category.cate {
+    margin: 0;
+}
 .download-links {
     padding-bottom: 20px;
 }
