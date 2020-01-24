@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="hero common-hero">
+    <div class="hero common-hero" style="height: 190px">
 {{--        <div class="container">--}}
 {{--            <div class="row">--}}
 {{--                <div class="col-md-12">--}}
@@ -16,13 +16,13 @@
 {{--            </div>--}}
 {{--        </div>--}}
     </div>
-<div class="page-single">
+<div class="page-single" style="padding: 0 0 75px 0">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 {{ $movies->links() }}
                 <div class="flex-wrap-movielist mv-grid-fw">
-                    @if(count($movies) > 1)
+                    @if(count($movies) >= 1)
                         @foreach($movies as $movie)
                             <div class="movie-item-style-2 movie-item-style-1">
                                 <img src="{{ asset('/'.$movie->poster_image.'.jpg' )  }}" alt="">
