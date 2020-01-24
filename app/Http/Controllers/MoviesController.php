@@ -85,7 +85,7 @@ class MoviesController extends Controller
         $data['genre'] = $this->getCategories($movie->category);
         // ---------------- //
         //  Get related movies
-
+        // TODO: FIX related movies categories
         $related_movies = Movie::take(7)->orWhere('category','like','%'.$movie->category.'%')
                                         ->where('id','!=',$movie->id)
                                         ->where('title','!=',$movie->title)
