@@ -221,17 +221,81 @@
         </nav>
 
         <!-- top search form -->
-        <div class="top-search">
-            <select>
-                <option value="united">TV show</option>
-                <option value="saab">Others</option>
-            </select>
-            <input type="text" placeholder="Search for a movie, TV Show or celebrity that you are looking for">
-        </div>
+
+            <form method="get" action="/search" class="form-it">
+                <div class="top-search" id="top-search">
+{{--                    <select>--}}
+{{--                        <option value="united">TV show</option>--}}
+{{--                        <option value="saab">Others</option>--}}
+{{--                    </select>--}}
+                    @if(isset($categories))
+                        <select name="genre">
+                        @foreach($categories as $cat)
+                            @if($cat == ucfirst($new_genre))
+                                    <option value="{{ $cat }}" selected="selected">{{ $cat }}</option>
+                                @else
+                                    <option value="{{ $cat }}">{{ $cat }}</option>
+                                @endif
+                        @endforeach
+                        </select>
+                    @else
+                        <select name="genre">
+                            <option value="GENRE" selected="selected">Genre</option>
+                            <option value="action" >Action</option>
+                            <option value="adventure">Adventure</option>
+                            <option value="animation">Animation</option>
+                            <option value="biography">Biography</option>
+                            <option value="comedy">Comedy</option>
+                            <option value="crime">Crime</option>
+                            <option value="documentary">Documentary</option>
+                            <option value="drama">Drama</option>
+                            <option value="family">Family</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="film-noir">Film-Noir</option>
+                            <option value="game-show">Game-Show</option>
+                            <option value="history">History</option>
+                            <option value="horror">Horror</option>
+                            <option value="music">Music</option>
+                            <option value="musical">Musical</option>
+                            <option value="mystery">Mystery</option>
+                            <option value="news">News</option>
+                            <option value="reality-tv">Reality-TV</option>
+                            <option value="romance">Romance</option>
+                            <option value="sci-fi">Sci-Fi</option>
+                            <option value="sport">Sport</option>
+                            <option value="talk-show">Talk-Show</option>
+                            <option value="thriller">Thriller</option>
+                            <option value="war">War</option>
+                            <option value="western">Western</option>
+                        </select>
+                    @endif
+
+                    @if(isset($new_order))
+                        <select name="order_by">
+                            <option value="LATEST" {{ $new_order ==  'LATEST' ? 'selected="selected"' : ''}}>Latest</option>
+                            <option value="OLDEST" {{ $new_order ==  'OLDEST' ? 'selected="selected"' : ''}}>Oldest</option>
+                            <option value="year" {{ $new_order ==  'year' ? 'selected="selected"' : ''}}>Year</option>
+                            <option value="ratings" {{ $new_order ==  'ratings' ? 'selected="selected"' : ''}}>Rating</option>
+                            <option value="title" {{ $new_order ==  'title' ? 'selected="selected"' : ''}}>Alphabetical</option>
+                        </select>
+                    @else
+                        <select name="order_by">
+                            <option value="LATEST" selected="selected">Latest</option>
+                            <option value="OLDEST">Oldest</option>
+                            <option value="year">Year</option>
+                            <option value="ratings">Rating</option>
+                            <option value="title">Alphabetical</option>
+                        </select>
+                    @endif
+
+                    <input name="q" type="text" value="{{ isset($new_keyword)? $new_keyword: '' }}" placeholder="Search for a movie that you are looking for">
+                    <button type="submit" id="sbmt"></button>
+                </div>
+            </form>
+
     </div>
 </header>
 <!-- END | Header -->
-
     @yield('content')
 <!-- footer section-->
 <footer class="ht-footer">

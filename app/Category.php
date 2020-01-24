@@ -7,12 +7,16 @@ namespace App;
 class Category
 {
     public $category_name,$category_color;
-
+    public  function vergin(){
+        $instance = new self();
+        return $instance;
+    }
     public function __construct($category_name)
     {
         $this->category_name = $category_name;
         $this->category_color = $this->colors[$category_name];
     }
+
 
     /**
      * @return mixed
@@ -45,7 +49,7 @@ class Category
     {
         $this->category_color = $name;
     }
-    private $colors = [
+    public $colors = [
             'Action' => '#ec5a1a',
             'Adventure' => '#1692bb',
             'Animation' => '#6D6FD7',
@@ -74,5 +78,7 @@ class Category
             'Western' => '#FBC18C',
             // etc
         ];
+
+
 
 }

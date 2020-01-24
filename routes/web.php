@@ -11,7 +11,11 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'PagesController@home');
+Route::get('/search', 'PagesController@search');
+
 
 //Route::get('/movies', 'MoviesController@index');
 Route::resource('movies', 'MoviesController');
