@@ -19,9 +19,9 @@ class PagesController extends Controller
         return $genres;
     }
     public function home(){
-        $random = random_int(20,500);
+        $random = random_int(30,13000);
         // slider movies: sorted by year
-        $movies = Movie::skip($random)->take(20)->orderBy('year','DESC')->get();
+        $movies = Movie::skip($random)->take(30)->orderBy('year','DESC')->get();
         foreach ($movies as $movie){
             $movie['genre'] = $this->getCategories($movie->category);
         }
