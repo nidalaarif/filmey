@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+
 <!--[if IE 7]>
 <html class="ie ie7 no-js" lang="en-US">
 <![endif]-->
@@ -22,10 +23,102 @@
     <!-- Mobile specific meta -->
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone-no">
+    <style>
+        #output video {
+            width: 100%;
+        }
+        #progressBar {
+            height: 5px;
+            width: 0%;
+            background-color: #35b44f;
+            transition: width .4s ease-in-out;
+        }
+        body.is-seed .show-seed {
+            display: inline;
+        }
+        body.is-seed .show-leech {
+            display: none;
+        }
+        .show-seed {
+            display: none;
+        }
+        #play_status code {
+            font-size: 90%;
+            font-weight: 700;
+            margin-left: 3px;
+            margin-right: 3px;
+            border-bottom: 1px dashed rgba(255,255,255,0.3);
+        }
 
+        .is-seed #hero {
+            background-color: #154820;
+            transition: .5s .5s background-color ease-in-out;
+        }
+        #hero {
+            background-color: #2a3749;
+        }
+        #play_status {
+            color: #fff;
+            font-size: 17px;
+            padding: 5px;
+        }
+        a:link, a:visited {
+            text-decoration: none;
+        }
+        .button {
+            display: inline-block;
+            margin: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.1875rem;
+            outline: none;
+            background-color: tomato;
+            color: white;
+            font-family: inherit;
+            font-size: 1.25em;
+            font-weight: 400;
+            line-height: 1.5rem;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            -webkit-transition: all 150ms ease-out;
+            transition: all 150ms ease-out;
+        }
+        .button:focus, .button:hover {
+            background-color: #ff7359;
+            box-shadow: 0 0 0 0.1875rem white, 0 0 0 0.375rem #ff7359;
+        }
+        .button:active {
+            background-color: #f25e43;
+            box-shadow: 0 0 0 0.1875rem #f25e43, 0 0 0 0.375rem #f25e43;
+            -webkit-transition-duration: 75ms;
+            transition-duration: 75ms;
+        }
+        .button.is-outlined {
+            border: 0.1875rem solid tomato;
+            background-color: transparent;
+            color: tomato;
+        }
+        .button.is-outlined:focus, .button.is-outlined:hover {
+            border-color: #ff7359;
+            color: #ff7359;
+        }
+        .button.is-outlined:active {
+            border-color: #f25e43;
+            color: #f25e43;
+        }
+
+
+
+
+
+    </style>
     <!-- CSS files -->
     <link rel="stylesheet" href="{{ asset('/css/plugins.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+
+
+
 
 </head>
 <body>
@@ -301,5 +394,91 @@
 <script src="{{ asset('/js/plugins.js') }}"></script>
 <script src="{{ asset('/js/plugins2.js') }}"></script>
 <script src="{{ asset('/js/custom.js') }}"></script>
+
+<!-- Include the latest version of WebTorrent -->
+<script src="https://cdn.jsdelivr.net/npm/webtorrent@latest/webtorrent.min.js"></script>
+
+<!-- Moment is used to show a human-readable remaining time -->
+<script src="http://momentjs.com/downloads/moment.min.js"></script>
+
+<script>
+    function playIt(link) {
+        var torrentId = link;
+        var client = new WebTorrent();
+
+        // HTML elements
+        var $body = document.body
+        var $progressBar = document.querySelector('#progressBar')
+        var $numPeers = document.querySelector('#numPeers')
+        var $downloaded = document.querySelector('#downloaded')
+        var $total = document.querySelector('#total')
+        var $remaining = document.querySelector('#remaining')
+        var $uploadSpeed = document.querySelector('#uploadSpeed')
+        var $downloadSpeed = document.querySelector('#downloadSpeed')
+        // Download the torrent
+        client.add(torrentId, function (torrent) {
+
+            // Torrents can contain many files. Let's use the .mp4 file
+            var file = torrent.files.find(function (file) {
+                return file.name.endsWith('.mp4')
+            })
+
+            // Stream the file in the browser
+            file.appendTo('#output')
+
+            // Trigger statistics refresh
+            torrent.on('done', onDone)
+            setInterval(onProgress, 500)
+            onProgress()
+
+            // Statistics
+            function onProgress () {
+                // Peers
+                $numPeers.innerHTML = torrent.numPeers + (torrent.numPeers === 1 ? ' peer' : ' peers')
+
+                // Progress
+                var percent = Math.round(torrent.progress * 100 * 100) / 100
+                $progressBar.style.width = percent + '%'
+                $downloaded.innerHTML = prettyBytes(torrent.downloaded)
+                $total.innerHTML = prettyBytes(torrent.length)
+
+                // Remaining time
+                var remaining
+                if (torrent.done) {
+                    remaining = 'Done.'
+                } else {
+                    remaining = moment.duration(torrent.timeRemaining / 1000, 'seconds').humanize()
+                    remaining = remaining[0].toUpperCase() + remaining.substring(1) + ' remaining.'
+                }
+                $remaining.innerHTML = remaining
+
+                // Speed rates
+                $downloadSpeed.innerHTML = prettyBytes(torrent.downloadSpeed) + '/s'
+                $uploadSpeed.innerHTML = prettyBytes(torrent.uploadSpeed) + '/s'
+            }
+            function onDone () {
+                $body.className += ' is-seed'
+                onProgress()
+            }
+        })
+
+        // Human readable bytes util
+        function prettyBytes(num) {
+            var exponent, unit, neg = num < 0, units = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+            if (neg) num = -num
+            if (num < 1) return (neg ? '-' : '') + num + ' B'
+            exponent = Math.min(Math.floor(Math.log(num) / Math.log(1000)), units.length - 1)
+            num = Number((num / Math.pow(1000, exponent)).toFixed(2))
+            unit = units[exponent]
+            return (neg ? '-' : '') + num + ' ' + unit
+        }
+    }
+    document.querySelector('.button').addEventListener('click', function (event) {
+        event.preventDefault();
+        this.innerHTML = 'movie playing...please wait';
+        this.disabled = true;
+    });
+
+</script>
 </body>
 </html>
