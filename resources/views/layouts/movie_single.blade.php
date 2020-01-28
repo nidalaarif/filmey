@@ -402,8 +402,17 @@
 <script src="http://momentjs.com/downloads/moment.min.js"></script>
 
 <script>
-    function playIt(link) {
+
+    //TODO: fix repeating player and dirtoying the existing Webtorrent object
+    function playIt(link,quality) {
+        var $stream_info = document.querySelector('.stream_info')
+        $stream_info.removeAttribute('hidden')
+        var $t_link = $stream_info.querySelector('#torrentLink')
+        $t_link.innerHTML += quality
         var torrentId = link;
+        if (client){
+            client.destroy()
+        }
         var client = new WebTorrent();
 
         // HTML elements
@@ -415,6 +424,9 @@
         var $remaining = document.querySelector('#remaining')
         var $uploadSpeed = document.querySelector('#uploadSpeed')
         var $downloadSpeed = document.querySelector('#downloadSpeed')
+        var $out = document.querySelector('#output')
+        $out.innerHTML = ''
+
         // Download the torrent
         client.add(torrentId, function (torrent) {
 

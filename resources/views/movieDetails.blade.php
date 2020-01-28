@@ -147,8 +147,18 @@
                                 </div>
                                 <div id="reviews" class="tab review">
                                     <div class="row">
-                                        <button id="play_torrent" class="button" onclick="playIt('{{ asset('/'.$data['links'][0]->link) }}')">Play movie</button>
-                                        <div id="hero">
+                                        <div >
+                                            @if(count($data['links']) > 0)
+                                                @foreach($data['links'] as $link)
+                                                    <button id="play_torrent" class="button" onclick="playIt('{{ asset('/'.$link->link) }}','{{ $link->quality_type }}')">Play {{ $link->quality_type }}</button>
+                                                @endforeach
+                                            @else
+                                                <p> sorry no links</p>
+                                            @endif
+
+
+                                        </div>
+                                        <div id="hero" class="stream_info" hidden>
                                             <div id="output">
                                                 <div id="progressBar"></div>
                                                 <!-- The video player will be added here -->
@@ -160,7 +170,7 @@
                                                     <span class="show-seed">Seeding </span>
                                                     <code>
                                                         <!-- Informative link to the torrent file -->
-                                                        <a id="torrentLink" href="#">Frozen Fever</a>
+                                                        <a id="torrentLink" href="#">{{ $data['details']->title }} </a>
                                                     </code>
                                                     <span class="show-leech"> from </span>
                                                     <span class="show-seed"> to </span>
