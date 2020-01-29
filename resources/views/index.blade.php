@@ -20,7 +20,7 @@
                                 <div class="title-in">
                                     <div class="cate">
                                         @foreach($movie['genre'] as $cat)
-                                            <span class="blue" style="background-color: {{ $cat->category_color }};"><a href="#">{{ $cat->category_name }}</a></span>
+                                            <span class="blue" style="background-color: {{ $cat->category_color }};"><a href="/category/{{ $cat->category_name }}">{{ $cat->category_name }}</a></span>
                                         @endforeach
                                     </div>
                                     <h6><a href="{{URL('/movies/'.$movie->id)}}">{{$movie->title}} </a></h6>

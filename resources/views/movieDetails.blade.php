@@ -44,7 +44,7 @@
                         <div class="rate-star movie_category cate">
                             <p>Genre: </p>
                             @foreach($data['genre'] as $cat)
-                                <span class="blue" style="background-color: {{ $cat->category_color }};"><a href="#">{{ $cat->category_name }}</a></span>
+                                <span class="blue" style="background-color: {{ $cat->category_color }};"><a href="/category/{{ $cat->category_name }}">{{ $cat->category_name }}</a></span>
                             @endforeach
                         </div>
                     </div>

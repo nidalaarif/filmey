@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PagesController@home');
 Route::get('/search', 'PagesController@search');
+Route::get('/category/{categoryName}', 'PagesController@show_category');
 
 //Route::get('/movies/{id}', array('middleware' => 'cors', 'uses' => 'MoviesController@show'));
 

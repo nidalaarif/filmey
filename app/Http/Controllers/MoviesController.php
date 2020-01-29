@@ -33,7 +33,8 @@ class MoviesController extends Controller
                         ->orderBy('year','DESC')
                         ->orderBy('ratings','DESC')
                         ->paginate(54);      // take(50)->orderBy('year','DESC')->get();
-        return view('movies')->with('movies',$movies);
+        $bigTitle = 'Browse Movies';
+        return view('movies',compact('movies','bigTitle'));
     }
 
     /**
@@ -93,7 +94,7 @@ class MoviesController extends Controller
         $data['related'] = $related_movies;
 
 
-        return view('movieDetails',compact('data',$data));
+        return view('movieDetails',compact('data'));
     }
 
     /**

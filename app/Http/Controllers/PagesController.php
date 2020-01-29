@@ -145,6 +145,14 @@ class PagesController extends Controller
                         ->paginate(54);
         return view('movies',compact('movies','new_keyword','categories','new_order','new_genre')); //'query:'.$keyword.'  order: '.$order.'   sort: '.$sort.'     genre: '.$genre.'   operator: '.$operator; //
     }
+    // Shows movies by category
+    public function show_category($categoryName){
+        $movies = Movie::where('category','like','%'.$categoryName.'%')
+                            ->orderByRaw("IF(category = '{$categoryName}',2,IF(title LIKE '{$categoryName}%',1,0)) DESC")
+                            ->paginate(54);
+        $bigTitle = 'Genre: '.$categoryName;
+        return view('movies',compact('movies','bigTitle'));
+    }
 
 
 }
