@@ -811,5 +811,4 @@
         </div>
     </div>
     <!--end of latest new v1 section-->
-    <p>{{ $hi }}</p>
 @endsection
