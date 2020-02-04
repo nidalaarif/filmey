@@ -128,12 +128,11 @@
                                                 @if(count($data['writers']) > 0)
                                                     <div class="sb-it">
                                                         <h6>Writers: </h6>
-                                                        @foreach($data['writers'] as $wr)
-                                                            <p>
-                                                                <a href="#">{{ $wr->name }}</a> ,
-                                                            </p>
-
-                                                        @endforeach
+                                                        <p>
+                                                            @foreach($data['writers'] as $wr)
+                                                                    <a href="#">{{ $wr->name }} {{ $wr->description != '' ? '('.$wr->description.')' : '' }}</a> ,
+                                                            @endforeach
+                                                        </p>
                                                     </div>
                                                 @endif
 
@@ -146,9 +145,15 @@
                                                         @endforeach
                                                     </p>
                                                 </div>
-                                                <div class="sb-it">
+                                                <div class="sb-it rate-star cate">
                                                     <h6>Genres:</h6>
-                                                    <p>{{ $data['details']->category }}</p>
+                                                    <p>
+                                                        @foreach($data['genre'] as $cat)
+                                                            <span class="blue" style="background-color: {{ $cat->category_color }};"><a
+                                                                    style="text-decoration: none;color: white;" href="/category/{{ $cat->category_name }}">{{ $cat->category_name }}</a></span>
+                                                        @endforeach
+                                                    </p>
+
                                                 </div>
                                                 <div class="sb-it">
                                                     <h6>Release Date:</h6>
@@ -162,6 +167,43 @@
                                                     <h6>IMDB Rating:</h6>
                                                     <p>{{ $data['details']->ratings }}</p>
                                                 </div>
+                                                    @if($data['details']->imdbVotes != '')
+                                                        <div class="sb-it">
+                                                            <h6>IMDB votes:</h6>
+                                                            <p>{{ $data['details']->imdbVotes }}</p>
+                                                        </div>
+                                                    @endif
+                                                    @if($data['details']->rating_imd != '')
+                                                        <div class="sb-it">
+                                                            <h6>Internet Movie Database Rating:</h6>
+                                                            <p>{{ $data['details']->rating_imd }}</p>
+                                                        </div>
+                                                    @endif
+                                                    @if($data['details']->rating_rt != '')
+                                                        <div class="sb-it">
+                                                            <h6>Rotten Tomatoes Rating:</h6>
+                                                            <p>{{ $data['details']->rating_rt }}</p>
+                                                        </div>
+                                                    @endif
+                                                    @if($data['details']->rating_m != '')
+                                                        <div class="sb-it">
+                                                            <h6>Metacritic Rating:</h6>
+                                                            <p>{{ $data['details']->rating_m }}</p>
+                                                        </div>
+                                                    @endif
+                                                    @if($data['details']->boxOffice != '')
+                                                        <div class="sb-it">
+                                                            <h6>BoxOffice:</h6>
+                                                            <p>{{ $data['details']->boxOffice }}</p>
+                                                        </div>
+                                                    @endif
+                                                    @if($data['details']->awards != '')
+                                                        <div class="sb-it">
+                                                            <h6>Awards:</h6>
+                                                            <p>{{ $data['details']->awards }}</p>
+                                                        </div>
+                                                    @endif
+
                                                 <div class="sb-it">
                                                     <h6>Plot Keywords:</h6>
                                                     <p class="tags">
@@ -190,7 +232,6 @@
                                                 @else
                                                     <p> sorry no links</p>
                                                 @endif
-
 
                                             </div>
                                             <div id="hero" class="stream_info" hidden>
@@ -273,10 +314,10 @@
                                                     <div class="mvcast-item">
                                                         <div class="cast-it">
                                                             <div class="cast-left">
-                                                                <img src="{{ asset('/'.$wr->avatar) }}" alt="">
+                                                                <h4>{{ $wr->initials }}</h4>
                                                                 <a href="#">{{ $wr->name }}</a>
                                                             </div>
-                                                            <p>({{ $wr->description }})</p>
+                                                            <p>{{ $wr->description != '' ? '('.$wr->description.')' : '' }}</p>
                                                         </div>
                                                     </div>
                                                 @endforeach
@@ -284,67 +325,21 @@
                                                 <p>Sorry no data found !</p>
                                         @endif
                                         <!-- //== -->
-                                            <div class="title-hd-sm">
-                                                <h4>Produced by</h4>
-                                            </div>
-                                            <div class="mvcast-item">
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>VA</h4>
-                                                        <a href="#">Victoria Alonso</a>
-                                                    </div>
-                                                    <p>... executive producer</p>
+                                            @if(count($data['producers']) > 0)
+                                                <div class="title-hd-sm">
+                                                    <h4>Produced by</h4>
                                                 </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>MB</h4>
-                                                        <a href="#">Mitchel Bell</a>
-                                                    </div>
-                                                    <p>... co-producer (as Mitch Bell)</p>
+                                                <div class="mvcast-item">
+                                                    @foreach($data['producers'] as $p)
+                                                        <div class="cast-it">
+                                                            <div class="cast-left">
+                                                                <h4>{{ $p['init'] }}</h4>
+                                                                <a href="#">{{ $p['name'] }}</a>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
                                                 </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>JC</h4>
-                                                        <a href="#">Jamie Christopher</a>
-                                                    </div>
-                                                    <p>... associate producer</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>LD</h4>
-                                                        <a href="#">Louis D’Esposito</a>
-                                                    </div>
-                                                    <p>... executive producer</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>JF</h4>
-                                                        <a href="#">Jon Favreau</a>
-                                                    </div>
-                                                    <p>... executive producer</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>KF</h4>
-                                                        <a href="#">Kevin Feige</a>
-                                                    </div>
-                                                    <p>... producer</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>AF</h4>
-                                                        <a href="#">Alan Fine</a>
-                                                    </div>
-                                                    <p>... executive producer</p>
-                                                </div>
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <h4>JF</h4>
-                                                        <a href="#">Jeffrey Ford</a>
-                                                    </div>
-                                                    <p>... associate producer</p>
-                                                </div>
-                                            </div>
+                                            @endif
                                         </div>
                                     </div>
                                     <div id="media" class="tab">

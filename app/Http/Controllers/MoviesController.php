@@ -12,6 +12,16 @@ use function Sodium\add;
 
 class MoviesController extends Controller
 {
+    public function getInitials($name){
+        $name = rtrim(ltrim($name));
+        $words = explode(" ", $name);
+        $acronym = "";
+
+        foreach ($words as $w) {
+            $acronym .= $w[0];
+        }
+        return $acronym;
+    }
     public function insidePar($value){
         $text = $value;
         preg_match('#\((.*?)\)#', $text, $match);
@@ -175,12 +185,32 @@ class MoviesController extends Controller
         $directors = $movie->crew()->where('profession','director')->get();
         $actors = $movie->crew()->where('profession','actor')->get();
         $writers = $movie->crew()->where('profession','writer')->get();
+
+        // add name initials to the writers
+        if (count($writers) > 0) {
+            foreach ($writers as $wr) {
+                $wr['initials'] = $this->getInitials($wr->name);
+            }
+        }
+        // ----- //
+        // split productors to array
+        $production = explode(',',$movie->production);
+        $prArray = [];
+        foreach ($production as $p){
+            $a = [
+              'name' => $p,
+              'init' =>   $this->getInitials($p)
+            ];
+            $prArray[] = $a;
+        }
+        // ------//
         $data['details'] = $movie;
         $data['links'] = $links;
         $data['screenshots'] = $screenshots;
         $data['directors'] = $directors;
         $data['actors'] = $actors;
         $data['writers'] = $writers;
+        $data['producers'] = $prArray;
         $data['genre'] = $this->getCategories($movie->category);
         // ---------------- //
         //  Get related movies
