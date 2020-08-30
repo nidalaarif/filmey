@@ -21,6 +21,8 @@ Route::get('/category/{categoryName}', 'PagesController@show_category');
 
 //Route::get('/movies', 'MoviesController@index');
 Route::resource('movies', 'MoviesController')->middleware('cors');
+Route::get('/movie','MoviesApiController@movies');
+
 
 
 
